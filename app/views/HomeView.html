@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <section class="row">
+    <!-- SECTION left tab -->
+    <div class="col-3 bg-dark text-light">
+      <section id="case-file-list" class="row" >
+
+      </section>
+      <form class="row" onsubmit="app.CaseFilesController.createCaseFile()">
+        <div class="col-12 mb-2">
+          Create New Case
+        </div>
+        <div class="col-12 mb-2 input-group">
+          <!-- <input type="text" name="agency" id="case-file-agency" class="form-control" placeholder="Agency Emoji"> -->
+          <select name="agency" id="case-file-agency" class="form-control w-50">
+            <option value="🦄">🦄 Creatures</option>
+            <option value="👽">👽 Extra-terrestrial</option>
+            <option value="👻">👻 Paranormal</option>
+            <option value="⚒️">⚒️ Societal</option>
+          </select>
+          <input type="date" name="reportedDate" id="case-file-reported-date" class="form-control">
+          <button type="submit" class="btn btn-success" title="create new case"><i class="mdi mdi-file-plus"></i></button>
+        </div>
+      </form>
+    </div>
+
+    <!-- SECTION active view -->
+    <div class="col-9">
+
+    </div>
+  </section>
+</div>
