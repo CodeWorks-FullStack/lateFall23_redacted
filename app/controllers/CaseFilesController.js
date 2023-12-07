@@ -10,9 +10,16 @@ function _drawCaseFilesList(){
   document.getElementById('case-file-list').innerHTML = content
 }
 
+function _drawActiveCaseFile(){
+  const activeCaseFile = AppState.activeCaseFile
+  let content = activeCaseFile.ActiveCaseFileTemplate
+  document.getElementById('active-case-file').innerHTML = content
+}
+
 export class CaseFilesController{
   constructor(){
     console.log('🗄️ ready to report some happenings');
+    AppState.on('activeCaseFile', _drawActiveCaseFile)
     AppState.on('caseFiles', _drawCaseFilesList) // attach observer first
     caseFilesService.loadCaseFiles() // load data, loading changes the state which triggers our observer
     // _drawCaseFilesList()
@@ -29,5 +36,23 @@ export class CaseFilesController{
     caseFilesService.createCaseFile(formData)
     // @ts-ignore
     form.reset()
+  }
+
+  openCaseFile(caseFileId){
+    console.log('🗃️', caseFileId);
+    caseFilesService.openCaseFile(caseFileId)
+  }
+
+  unlockCaseFile(){
+    console.log('🔓');
+    caseFilesService.unlockCaseFile()
+    // _drawActiveCaseFile() this will also work if you don't want to force the observer from the service layer
+  }
+
+  lockCaseFile(){ // and this locks it too
+    console.log('💾🔒');
+    const newBody = document.getElementById('active-case-body').value // grabs the text content out of our area
+    console.log('new stuff', newBody);
+    caseFilesService.lockCaseFile(newBody)
   }
 }
